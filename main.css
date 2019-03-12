@@ -1,3 +1,7 @@
 body {
   background-color: aliceblue;
 }
+
+.pies {
+  border: 2px solid black;
+}
