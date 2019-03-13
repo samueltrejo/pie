@@ -61,13 +61,26 @@ const pies = [
   }
 ];
 
-const buttonClick = () => {
-  console.log('you clicked a button');
+const buttonClick = (e) => {
+  const buttonId = e.target.id;
+  const selectedPies = [];
+  pies.forEach((pie) => {
+    if(buttonId === pie.instructor) {
+      selectedPies.push(pie);
+    }    
+  })
+  if(buttonId === 'All') {
+    createPies(pies);
+  } else {
+    createPies(selectedPies)
+  }
+  
+  // console.log('you clicked a button', e.target.id);
 };
 
-const createPies = () => {
+const createPies = (array) => {
   let textToPrint = '';
-  pies.forEach(pie => {
+  array.forEach(pie => {
     textToPrint += `<div class="pies">`;
     textToPrint += `<h3>Name: ${pie.name}</h3>`;
     textToPrint += `<p>Ingredients: ${pie.ingredients}</p>`;
@@ -88,11 +101,14 @@ const printToDom = (divId, textToPrint) => {
 
 const buttonEvents = () => {
   document.getElementById('Zoe').addEventListener('click', buttonClick);
+  document.getElementById('Saul').addEventListener('click', buttonClick);
+  document.getElementById('Michael').addEventListener('click', buttonClick);
+  document.getElementById('All').addEventListener('click', buttonClick);
 };
 
 const init = () => {
   buttonEvents();
-  createPies();
+  // createPies(pies);
 };
 
 init();
